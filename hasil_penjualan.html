@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hasil Penjualan</title>
+    <link rel="stylesheet" href="menu.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+      .no-data {
+        text-align: center;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hasil Penjualan</h1>
+      <table id="salesTable">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Payment Method</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Data rows will be inserted here dynamically -->
+        </tbody>
+      </table>
+    </div>
+    <script>
+      // Function to fetch sales data and display in the table
+      function loadSalesData() {
+        // For demonstration, we'll use a static array
+        const salesData = JSON.parse(localStorage.getItem("salesData")) || [];
+
+        const tableBody = document.querySelector("#salesTable tbody");
+        tableBody.innerHTML = ""; // Clear existing rows
+
+        if (salesData.length === 0) {
+          tableBody.innerHTML =
+            '<tr><td colspan="5" class="no-data">No sales data available.</td></tr>';
+        } else {
+          salesData.forEach((sale) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                        <td>${sale.username}</td>
+                        <td>${sale.product}</td>
+                        <td>Rp ${sale.price.toLocaleString()}</td>
+                        <td>${sale.paymentMethod}</td>
+                        <td>${new Date(sale.date).toLocaleString()}</td>
+                    `;
+            tableBody.appendChild(row);
+          });
+        }
+      }
+
+      // Call the function to load sales data when the page loads
+      window.onload = loadSalesData;
+    </script>
+    <script src="hasil_penjualan.js"></script>
+  </body>
+</html>

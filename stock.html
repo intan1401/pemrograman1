@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock iPhone</title>
+    <link rel="stylesheet" href="stock.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Stock iPhone</h1>
+        <nav>
+          <ul>
+            <li><a href="menu.html">Promosi Produk iPhone</a></li>
+            <li><a href="stock.html">Stok iPhone</a></li>
+            <li><a href="hasil_penjualan.html">Hasil Penjualan</a></li>
+            <li><a href="cust.html">Customer yang Membeli Produk</a></li>
+            <li><a href="transaksi.html">Transaksi Penjualan</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section id="stockIphoneContent" class="content-section active">
+          <h2>Stok iPhone</h2>
+          <div class="stock-list">
+            <div class="stock-item">
+              <img src="iphone11.jpeg" alt="iPhone 11" />
+              <p>iPhone 11</p>
+              <p>Stock: 5</p>
+              <p>Harga: Rp 7.000.000</p>
+              <button onclick="buyProduct('iPhone 11', 7000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 11')">Stock</button>
+            </div>
+            <div class="stock-item">
+              <img src="iphone12.jpeg" alt="iPhone 12" />
+              <p>iPhone 12</p>
+              <p>Stock: 7</p>
+              <p>Harga: Rp 9.000.000</p>
+              <button onclick="buyProduct('iPhone 12', 9000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 12')">Stock</button>
+            </div>
+            <div class="stock-item">
+              <img src="iphone13.jpeg" alt="iPhone 13" />
+              <p>iPhone 13</p>
+              <p>Stock: 6</p>
+              <p>Harga: Rp 11.000.000</p>
+              <button onclick="buyProduct('iPhone 13', 11000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 13')">Stock</button>
+            </div>
+            <div class="stock-item">
+              <img src="iphone14.jpeg" alt="iPhone 14" />
+              <p>iPhone 14</p>
+              <p>Stock: 5</p>
+              <p>Harga: Rp 12.000.000</p>
+              <button onclick="buyProduct('iPhone 14', 12000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 14')">Stock</button>
+            </div>
+            <!-- Tambahkan tipe iPhone lainnya di sini -->
+            <div class="stock-item">
+              <img src="ip15.jpeg" alt="iPhone 15" />
+              <p>iPhone 15</p>
+              <p>Stock: 8</p>
+              <p>Harga: Rp 14.000.000</p>
+              <button onclick="buyProduct('iPhone 15', 14000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 15')">Stock</button>
+            </div>
+            <div class="stock-item">
+              <img src="ip16.png" alt="iPhone 16" />
+              <p>iPhone 16</p>
+              <p>Stock: 4</p>
+              <p>Harga: Rp 15.000.000</p>
+              <button onclick="buyProduct('iPhone 16', 15000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 16')">Stock</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="menu.js"></script>
+    <script>
+      function buyProduct(productName, price) {
+        const username = prompt("Enter your username:");
+        if (username) {
+          const paymentMethod = prompt(
+            `You are buying ${productName} for Rp ${price}.\nChoose your payment method: Dana, Transfer Bank, OVO`
+          );
+          const saleData = {
+            username: username,
+            product: productName,
+            price: price,
+            paymentMethod: paymentMethod,
+            date: new Date().toISOString(),
+          };
+          const salesData = JSON.parse(localStorage.getItem("salesData")) || [];
+          salesData.push(saleData);
+          localStorage.setItem("salesData", JSON.stringify(salesData));
+          alert(
+            `Thank you for your purchase! Your payment method is ${paymentMethod}.`
+          );
+          window.location.href = "hasil_penjualan.html";
+          switch (paymentMethod.toLowerCase()) {
+            case "dana":
+              processDanaPayment(productName, price);
+              break;
+            case "transfer bank":
+              processBankTransfer(productName, price);
+              break;
+            case "ovo":
+              processOvoPayment(productName, price);
+              break;
+            default:
+              alert("Invalid payment method selected. Please try again.");
+          }
+        } else {
+          alert("Username is required to complete the purchase.");
+        }
+      }
+      function processDanaPayment(productName, price) {
+        alert(
+          `Processing Dana payment for ${productName} with price Rp ${price}`
+        );
+        console.log(
+          `Processing Dana payment for ${productName} with price Rp ${price}`
+        );
+      }
+      function processBankTransfer(productName, price) {
+        alert(
+          `Processing bank transfer for ${productName} with price Rp ${price}`
+        );
+        console.log(
+          `Processing bank transfer for ${productName} with price Rp ${price}`
+        );
+      }
+      function processOvoPayment(productName, price) {
+        alert(
+          `Processing OVO payment for ${productName} with price Rp ${price}`
+        );
+        console.log(
+          `Processing OVO payment for ${productName} with price Rp ${price}`
+        );
+      }
+      function showStock(productName) {
+        window.location.href = `stock.html?product=${encodeURIComponent(
+          productName
+        )}`;
+      }
+    </script>
+  </body>
+</html>

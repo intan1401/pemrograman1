@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="menu.css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav class="menu">
+        <div class="logo">
+          <h1>INTAN STORE</h1>
+        </div>
+        <ul>
+          <li>
+            <a href="menu.html" id="promosiProductMenu" class="active"
+              >Promosi Produk iPhone</a
+            >
+          </li>
+          <li><a href="stock.html" id="stockIphoneMenu">Stock iPhone</a></li>
+          <li>
+            <a href="hasil_penjualan.html" id="hasilPenjualanMenu"
+              >Hasil Penjualan</a
+            >
+          </li>
+          <li>
+            <a href="cust.html" id="customerPembeliMenu"
+              >Customer yang Membeli Produk</a
+            >
+          </li>
+          <li>
+            <a href="transaksi.html" id="transaksiPenjualanMenu"
+              >Transaksi Penjualan</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div class="content">
+        <div id="promosiProductContent" class="content-section active">
+          <h2>Diskon iPhone Terbaru</h2>
+          <p class="promo-text">
+            Diskon hingga 20% untuk semua model iPhone terbaru. Jangan lewatkan
+            kesempatan ini!
+          </p>
+          <div class="promo-images">
+            <div class="promo-item">
+              <img src="iphone11.jpeg" alt="iPhone 11" />
+              <p>iPhone 11 - Kini dengan performa A14 Bionic</p>
+              <p>Rp 7.000.000</p>
+              <p class="best-seller">Produk Best Seller!</p>
+              <button onclick="verifyAndBuy('iPhone 11', 7000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 11')">Stock</button>
+            </div>
+            <div class="promo-item">
+              <img src="iphone12.jpeg" alt="iPhone 12" />
+              <p>iPhone 12 - Fotografi Pro di tangan Anda</p>
+              <p>Rp 9.000.000</p>
+              <button onclick="verifyAndBuy('iPhone 12', 9000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 12')">Stock</button>
+            </div>
+            <div class="promo-item">
+              <img src="iphone13.jpeg" alt="iPhone 13" />
+              <p>iPhone 13 - Layar terbesar dan terbaik</p>
+              <p>Rp 11.000.000</p>
+              <button onclick="verifyAndBuy('iPhone 13', 11000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 13')">Stock</button>
+            </div>
+            <div class="promo-item">
+              <img src="iphone14.jpeg" alt="iPhone 14" />
+              <p>iPhone 14 - Sangat kuat</p>
+              <p>Rp 12.000.000</p>
+              <button onclick="verifyAndBuy('iPhone 14', 12000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 14')">Stock</button>
+            </div>
+          </div>
+        </div>
+        <div id="stockIphoneContent" class="content-section">
+          <p>Content for Stok iPhone</p>
+          <div class="stock-list">
+            <div class="stock-item">
+              <p>iPhone 11</p>
+              <p>Stock: 5</p>
+              <p>Harga: Rp 7.000.000</p>
+              <button onclick="verifyAndBuy('iPhone 11', 7000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 11')">Stock</button>
+            </div>
+            <div class="stock-item">
+              <p>iPhone 12</p>
+              <p>Stock: 7</p>
+              <p>Harga: Rp 9.000.000</p>
+              <button onclick="verifyAndBuy('iPhone 12', 9000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 12')">Stock</button>
+            </div>
+            <div class="stock-item">
+              <p>iPhone 13</p>
+              <p>Stock: 6</p>
+              <p>Harga: Rp 11.000.000</p>
+              <button onclick="verifyAndBuy('iPhone 13', 11000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 13')">Stock</button>
+            </div>
+            <div class="stock-item">
+              <p>iPhone 14</p>
+              <p>Stock: 5</p>
+              <p>Harga: Rp 12.000.000</p>
+              <button onclick="verifyAndBuy('iPhone 14', 12000000)">
+                Buy product
+              </button>
+              <button onclick="showStock('iPhone 14')">Stock</button>
+            </div>
+          </div>
+        </div>
+        <div id="hasilPenjualanContent" class="content-section">
+          Content for Hasil Penjualan
+        </div>
+        <div id="customerPembeliContent" class="content-section">
+          Content for Customer yang Membeli Produk
+        </div>
+        <div id="transaksiPenjualanContent" class="content-section">
+          Content for Transaksi Penjualan
+        </div>
+      </div>
+    </div>
+    <script src="menu.js"></script>
+    <script>
+      function verifyAndBuy(productName, price) {
+        const savedUsername = localStorage.getItem("username");
+
+        if (savedUsername) {
+          const username = prompt("Enter your username:");
+
+          if (username === savedUsername) {
+            const paymentMethod = prompt(
+              `You are buying ${productName} for Rp ${price}.\nChoose your payment method: Dana, Transfer Bank, OVO`
+            );
+
+            if (paymentMethod) {
+              // Simpan data penjualan ke localStorage
+              const saleData = {
+                username: username,
+                product: productName,
+                price: price, // Menambahkan informasi harga produk
+                paymentMethod: paymentMethod,
+                date: new Date().toISOString(),
+              };
+
+              // Ambil data existing dari localStorage atau inisialisasi array kosong
+              const salesData =
+                JSON.parse(localStorage.getItem("salesData")) || [];
+              salesData.push(saleData);
+
+              // Simpan kembali data ke localStorage
+              localStorage.setItem("salesData", JSON.stringify(salesData));
+
+              alert(
+                `Thank you for your purchase! Your payment method is ${paymentMethod}.`
+              );
+
+              // Redirect ke halaman hasil_penjualan.html
+              window.location.href = "hasil_penjualan.html";
+            } else {
+              alert("Payment method selection canceled.");
+            }
+          } else {
+            alert("Username is incorrect. Purchase canceled.");
+          }
+        } else {
+          alert("You need to login first to make a purchase.");
+          // Redirect ke halaman login jika belum login
+          window.location.href = "login.html";
+        }
+      }
+
+      function showStock(productName) {
+        // Redirect to stock.html with product name in query string
+        window.location.href = `stock.html?product=${encodeURIComponent(
+          productName
+        )}`;
+      }
+    </script>
+  </body>
+</html>

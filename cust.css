@@ -1,0 +1,54 @@
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+/* Total sales and bonus section */
+.total-sales,
+.bonus {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.bonus p {
+  margin: 5px 0;
+}
+
+/* No data message */
+.no-data {
+  text-align: center;
+  color: #888;
+}

@@ -1,0 +1,77 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f7fd; /* Warna latar belakang */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  max-width: 500px;
+  width: 100%;
+  background-color: #c5d7eb; /* Warna latar belakang kontainer */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan lembut */
+  position: relative;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  background: linear-gradient(
+    to right,
+    #2b75b9,
+    #0c2e4e
+  ); /* Gradien biru metalik */
+  border-radius: 15px;
+  z-index: -1;
+}
+
+.receipt-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff; /* Warna teks header */
+}
+
+.product-info,
+.payment-details {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #fff; /* Warna latar belakang bagian informasi produk dan pembayaran */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+}
+
+.product-info p,
+.payment-details p {
+  margin: 5px 0;
+  color: #333; /* Warna teks informasi */
+}
+
+.payment-details {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.congratulations {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+  color: #0018b6; /* Warna teks ucapan selamat */
+}
+
+.sales-name {
+  margin-top: 20px;
+  text-align: right;
+  font-style: italic;
+  color: #666; /* Warna teks nama sales */
+}

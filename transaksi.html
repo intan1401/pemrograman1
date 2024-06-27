@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Receipt</title>
+    <link rel="stylesheet" href="transaksi.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="receipt-header">
+        <h1>Payment Receipt</h1>
+      </div>
+      <div class="product-info">
+        <p><strong>Product Name:</strong> <span id="productName"></span></p>
+        <p><strong>Price:</strong> <span id="productPrice"></span></p>
+      </div>
+      <div class="payment-details">
+        <p><strong>Username:</strong> <span id="username"></span></p>
+        <p><strong>Payment Method:</strong> <span id="paymentMethod"></span></p>
+        <p><strong>Date & Time:</strong> <span id="transactionDate"></span></p>
+      </div>
+      <div class="congratulations">
+        <p>Congratulations on your purchase! Enjoy your new product.</p>
+      </div>
+      <div class="sales-name">
+        <p>Sales: Intan</p>
+      </div>
+    </div>
+
+    <script>
+      // Load latest sales data from localStorage
+      const salesData = JSON.parse(localStorage.getItem("salesData")) || [];
+      const latestSale = salesData[salesData.length - 1]; // Get the latest sale
+
+      // Populate receipt with latest sale details
+      document.getElementById("username").textContent = latestSale.username;
+      document.getElementById("productName").textContent = latestSale.product;
+      document.getElementById(
+        "productPrice"
+      ).textContent = `Rp ${latestSale.price.toLocaleString()}`;
+      document.getElementById("paymentMethod").textContent =
+        latestSale.paymentMethod;
+      document.getElementById("transactionDate").textContent = new Date(
+        latestSale.date
+      ).toLocaleString();
+    </script>
+  </body>
+</html>

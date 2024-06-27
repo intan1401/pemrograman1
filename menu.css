@@ -1,0 +1,130 @@
+/* Import Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+nav.menu {
+  width: 250px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+nav.menu .logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+nav.menu .logo h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+nav.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav.menu ul li {
+  margin-bottom: 20px;
+}
+
+nav.menu ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+nav.menu ul li a.active,
+nav.menu ul li a:hover {
+  background-color: #34495e;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.content-section {
+  display: none;
+}
+
+.content-section.active {
+  display: block;
+}
+
+.promo-images,
+.stock-list {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  gap: 20px;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  scroll-snap-type: x mandatory; /* Snap to each item */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.promo-item,
+.stock-item {
+  min-width: 300px; /* Minimum width for each item */
+  flex: 0 0 auto; /* Prevent items from shrinking */
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  scroll-snap-align: start; /* Snap each item to the start */
+  transition: transform 0.3s ease; /* Smooth animation on transform */
+}
+
+.promo-item img,
+.stock-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.promo-item p,
+.stock-item p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.promo-item .best-seller {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.promo-item button,
+.stock-item button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+.promo-item button:hover,
+.stock-item button:hover {
+  background-color: #2980b9;
+}
